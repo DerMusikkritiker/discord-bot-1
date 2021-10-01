@@ -24,10 +24,13 @@ client.on("messageCreate", msg => {
 
     if (messageContent === "hello") {
         msg.reply("Hello there!")
+        for (i=0; i < 5; i++) {
+            msg.reply("Hello there, Nr." + i)
+        }
 
     // everything that is a command starting with a slash below this
     const messageSplit = msg.content.split(" ") 
-    if (messageSplit[0] === "/") {
+    if (messageSplit[0] === "hellol") {
         const command = messageSplit[1]
         // if (!command) return
 
