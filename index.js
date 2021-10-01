@@ -1,6 +1,6 @@
 require("dotenv").config()
 const { Client, Intents } = require("discord.js")
-import fetch from 'node-fetch'
+//import fetch from 'node-fetch'
 
 // specifying intents
 const setup_intents = new Intents()
@@ -13,19 +13,41 @@ client.on("ready", () => {
 })
 
 // messages
-client.on("message", msg => {
+client.on("messageCreate", msg => {
     if (msg.author.bot) return
+
     
-    if (msg.content === "numberfact") {
-        getRandomFact(null).then(quote => msg.channel.send(quote))
+    
+    const messageContent = msg.content.toLowerCase()
+
+    // everything that is not a command starting with a slash below this
+
+    if (messageContent === "hello") {
+        msg.reply("Hello there!")
+
+    // everything that is a command starting with a slash below this
+    const messageSplit = msg.content.split(" ") 
+    if (messageSplit[0] === "/") {
+        const command = messageSplit[1]
+        // if (!command) return
+
+        if (command === "helpme") {
+            msg.reply("i also like the beatles a lot!")
+        }
+
+        if (command === "numberfact") {
+            getRandomFact(null).then(quote => msg.channel.send(quote))
+        }
     }
 
-    if (msg.content === "Hello") {
-        msg.reply("Hello there!")
+   
+
+    
     }
 })
 
 // random number fact
+/*
 function getRandomFact(randomNumber) {
     if (randomNumber != null) {
         request = randomNumber
@@ -37,6 +59,6 @@ function getRandomFact(randomNumber) {
         return res.json()
     })
 }
-
+*/
 // logging in
 client.login(process.env.DISCORDJS_BOT_TOKEN)
