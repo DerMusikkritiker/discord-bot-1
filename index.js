@@ -24,9 +24,7 @@ client.on("messageCreate", msg => {
 
     if (messageContent === "hello") {
         msg.reply("Hello there!")
-        for (i=0; i < 5; i++) {
-            msg.reply("Hello there, Nr." + i)
-        }
+    }    
 
     // everything that is a command starting with a slash below this
     const messageSplit = msg.content.split(" ") 
@@ -45,8 +43,6 @@ client.on("messageCreate", msg => {
 
    
 
-    
-    }
 })
 
 // random number fact
